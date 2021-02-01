@@ -13,8 +13,9 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  View,
 } from 'react-native';
-import AsyncStorage from 'react-native-community';
+// import AsyncStorage from 'react-native-community';
 
 const App: () => React$Node = () => {
   const [id, setId] = React.useState('')
@@ -24,39 +25,46 @@ const App: () => React$Node = () => {
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <Text style={styles.lable}>아이디</Text>
+        <Text style={styles.label}>아이디</Text>
         <TextInput style={styles.input} onChangeText={(txt) => setId(txt)} value={id}/>
 
-        <Text style={styles.lable}>비밀번호</Text>
+        <Text style={styles.label}>비밀번호</Text>
         <TextInput style={styles.input} onChangeText={(txt) => setPassword(txt)} value={password}/>
 
-        <TouchableOpacity style={styles.btn} onPress={() => {
-          fetch("http://192.168.0.29:80/videoApp/login.php", {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              id: id,
-              password: password,
+        <View style={styles.row}>
+          <TouchableOpacity style={[styles.btn, styles.signUpBtn]} onPress={() => {}}>
+            <Text style={[styles.btnTitle, styles.signUpTitle]}>회원가입</Text>
+          </TouchableOpacity>
+      
+          <TouchableOpacity style={[styles.btn, styles.loginBtn]} onPress={() => {
+            fetch("http://192.168.0.29:80/videoApp/login.php", {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                id: id,
+                password: password
+              })
             })
-          })
-          .then((response) => response.json())
-          .then((json) => {
-            if(json.login === true) {
-              alert("성공")
-              loginSuccess = async (data) => {
-                await AsyncStorage.setItem('id', id);
+            .then((response) => response.json())
+            .then((json) => {
+              if(json.login === true) {
+                alert("성공 " + json)
+                loginSuccess = async (data) => {
+                  await AsyncStorage.setItem('id', id);
+                }
+              } else {
+                alert("실패" + json + json.login)
               }
-            } else {
-              alert("실패")
-            }
-          })
-        }
-        } >
-          <Text style={styles.btnTitle}>로그인</Text>
-        </TouchableOpacity>
+            })
+            .catch(error => alert(error))
+          }
+          }>
+            <Text style={[styles.btnTitle, styles.loginTitle]}>로그인</Text>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     </>
   );
@@ -70,7 +78,10 @@ const styles = StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
   },
-  lable: {
+  row: {
+    flexDirection: 'row',
+  },
+  label: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#707070',
@@ -94,8 +105,10 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   btn: {
-    height: 45,
-    backgroundColor: '#efb43e',
+    width: 150,
+    height: 50,
+    marginTop: 15,
+    marginRight: 10,
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
@@ -111,8 +124,21 @@ const styles = StyleSheet.create({
   btnTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  loginBtn: {
+    backgroundColor: '#efb43e',
+  },
+  loginTitle: {
     color: '#FFFFFF',
-  }
+  },
+  signUpBtn: {
+    backgroundColor: '#F5F5F3',
+    borderColor: '#efb43e',
+    borderWidth: 2,
+  },
+  signUpTitle: {
+    color: '#efb43e',
+  },
 });
 
 export default App;
