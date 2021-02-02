@@ -45,18 +45,18 @@ const App: () => React$Node = () => {
               },
               body: JSON.stringify({
                 id: id,
-                password: password
+                password: password,
               })
             })
             .then((response) => response.json())
             .then((json) => {
               if(json.login === true) {
-                alert("성공 " + json)
+                alert("성공 " + json.login)
                 loginSuccess = async (data) => {
                   await AsyncStorage.setItem('id', id);
                 }
               } else {
-                alert("실패" + json + json.login)
+                alert("실패" + json.login)
               }
             })
             .catch(error => alert(error))
