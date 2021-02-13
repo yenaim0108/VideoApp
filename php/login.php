@@ -1,26 +1,39 @@
 <?php
-    $host = 'localhost';
-    $user = 'snap';
-    $pw = '0201';
-    $dbName = 'snap';
-     
-    $conn = mysqli_connect($host, $user, $pw, $dbName);
+    include('dbcon.php');
     
     // true는 Array 객체로 반환($authInfo['id']), false는 Object로 반환($authInfo -> {'id'})
     $authInfo = json_decode(file_get_contents('php://input'), true);
     $id = $authInfo['id'];
     $password = $authInfo['password'];
 
-    $sql = "INSERT INTO member(id, password, token)
-            VALUES('$id', '$password', '-')";
+    $sql = "SELECT COUNT(*)
+            FROM member
+            WHERE id='$id'";
+    $result = mysqli_query($con, $sql);
+    $row = mysqli_fetch_array($result);
 
-    $result = mysqli_query($conn, $sql);
-    
-    if($result === true) {
-        $list_array = array('login' => true);
-    } else {
-        $list_array = array('login' => mysqli_error($conn));
+    if($row[0] !== '0') {
+        $idCheck = true;
     }
+    else {
+        $idCheck = false;
+    }
+
+    $sql = "SELECT password
+            FROM member
+            WHERE id='$id'";
+    $result = mysqli_query($con, $sql);
+    $row = mysqli_fetch_array($result);
+
+    if($row['password'] === $password) {
+        $pwdCheck = true;
+    }
+    else {
+        $pwdCheck = false;
+    }
+    
+    $list_array = array('idCheck' => $idCheck,
+                        'pwdCheck' => $pwdCheck);
 
     $result_array = json_encode($list_array);
         
