@@ -24,7 +24,7 @@ function Login(props) {
         <TextInput style={styles.input} onChangeText={(txt) => setPassword(txt)} value={password} secureTextEntry={true} />
 
         <View style={styles.row}>
-          <TouchableOpacity style={[styles.btn, styles.signUpBtn]} onPress={() => { }}>
+          <TouchableOpacity style={[styles.btn, styles.signUpBtn]} o  nPress={() => { }}>
             <Text style={[styles.btnTitle, styles.signUpTitle]}>회원가입</Text>
           </TouchableOpacity>
 
@@ -60,6 +60,7 @@ function Login(props) {
                 }
                 else {
                   AsyncStorage.setItem('userID', id);
+                  props.navigation.navigate('Home');
                 }
               })
               .catch(error => alert(error))

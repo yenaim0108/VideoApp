@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
-function SignUp() {
+function SignUp(props) {
   const [id, setId] = React.useState('');
   const [idCheck, setIdCheck] = React.useState(false);
   const [password, setPassword] = React.useState('');
@@ -89,7 +89,7 @@ function SignUp() {
               return;
             }
 
-            fetch("http://172.30.1.31:80/videoApp/signup.php", {
+            fetch("http://192.168.0.29:80/videoApp/signup.php", {
               method: 'POST',
               headers: {
                 Accept: 'application/json',
@@ -103,9 +103,10 @@ function SignUp() {
               .then((response) => response.json())
               .then((json) => {
                 if (json.signup === true) {
-                  alert("회원가입 성공");
+                  AsyncStorage.setItem('userID', id);
+                  props.navigation.navigate('Home');
                 } else {
-                  alert("회원가입 실패\m" + json.signup);
+                  alert("회원가입 실패\n" + json.signup);
                 }
               })
               .catch(error => alert(error))
@@ -221,7 +222,7 @@ const styles = StyleSheet.create({
   },
   signup: {
     color: '#FFFFFF'
-  },
+  }
 });
 
 export default SignUp;

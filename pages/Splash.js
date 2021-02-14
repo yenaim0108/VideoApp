@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, Image, StyleSheet } from 'react-native';
 
-function Splash() {
+function Splash(props) {
   return (
     <>
       <SafeAreaView style={styles.container}>
