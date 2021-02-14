@@ -6,8 +6,8 @@ import Setting from '../pages/Setting';
 
 const Stack = createStackNavigator();
 
-function AppNavigator(props) {
-    return(
+function AppNavigator (props) {
+    return (
         <Stack.Navigator>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Setting" component={Setting} />

@@ -20,7 +20,7 @@ function Setting(props) {
         }}>
           <View style={styles.row}>
             <Text style={styles.btnTxt}>로그아웃</Text>
-            <Image style={styles.img} source={require('./img/right_arrow.png')}></Image>
+            <Image style={styles.img} source={require('../img/right_arrow.png')}></Image>
           </View>
         </TouchableOpacity>
       </SafeAreaView>
