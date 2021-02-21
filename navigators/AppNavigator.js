@@ -1,17 +1,24 @@
 
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from '../pages/Home';
-import Setting from '../pages/Setting';
+import Splash from '../pages/Splash'
+import Login from '../pages/Login'
+import SignUp from '../pages/SignUp'
+import TabNavigator from '../navigators/TabNavigator'
 
 const Stack = createStackNavigator();
 
 function AppNavigator (props) {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Setting" component={Setting} />
-        </Stack.Navigator>
+        <Stack.Navigator
+            initialRouteName={'Splash'}
+            headerMode={false}
+        >
+            <Stack.Screen name='Splash' component={Splash} />
+            <Stack.Screen name='Login' component={Login} />
+            <Stack.Screen name='SignUp' component={SignUp} />
+            <Stack.Screen name='Tab' component={TabNavigator}/>
+        </Stack.Navigator>   
     )
 }
 

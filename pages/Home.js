@@ -1,20 +1,20 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import React from 'react';
 import { SafeAreaView, Text, StyleSheet } from 'react-native';
 
 function Home({navigation}) {
-  const [list, setList] = React.useState({})
-
-  fetch('http://localhost/videoApp/videoList.php')
-  .then((response) => response.json())
-  .then((json) => {
-    setList()
-  })
-  .catch(error => alert(error))
+  const [list, setList] = React.useState({});
+  const [userID, setUserID] = React.useState();
+  React.useEffect(() => {
+    AsyncStorage.getItem('userID', (error, result) => {
+      setUserID(result);
+    });
+  }, []);
 
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <Text>홈이에유</Text>
+        <Text>아이디: {userID}</Text>
       </SafeAreaView>
     </>
   );

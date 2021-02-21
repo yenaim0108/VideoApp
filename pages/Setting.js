@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 120,
-    marginBottom: 20
+    marginBottom: 50
   },
   btn: {
     backgroundColor: '#FFFFFF',
