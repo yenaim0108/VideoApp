@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     elevation: 5
   },
   btn: {
-    width: 150,
+    width: 135,
     height: 50,
     marginTop: 15,
     marginRight: 10,

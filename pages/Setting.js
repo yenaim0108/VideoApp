@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   btnTxt: {
     fontSize: 22,
     fontWeight: 'bold',
-    width: 230
+    width: 200
   },
   img: {
     height: 25,

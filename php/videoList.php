@@ -10,7 +10,7 @@
     while($row = mysqli_fetch_array($result)) {
         array_push($list_array, array(
             'idx' => $row[0],
-            'path' => $row[1],
+            'link' => $row[1],
             'thumbnail' => $row[2],
             'title' => $row[3],
             'views' => $row[4],
