@@ -112,6 +112,7 @@ function SignUp(props) {
                     if (json.signup === true) {
                       AsyncStorage.setItem('userID', id);
                       props.navigation.navigate('Tab');
+                      alert("회원가입에 성공하셨습니다.")
                     } else {
                       alert("회원가입에 실패하셨습니다.\n" + json.signup);
                     }
