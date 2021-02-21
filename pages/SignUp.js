@@ -105,8 +105,8 @@ function SignUp(props) {
                   password: password
                 })
               })
-                .then((response) => response.json())
-                .then((json) => {
+                .then(response => response.json())
+                .then(json => {
                   if (json.signup === true) {
                     AsyncStorage.setItem('userID', id);
                     props.navigation.navigate('Tab');

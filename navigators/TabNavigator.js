@@ -3,7 +3,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Home from '../pages/Home';
 import Setting from '../pages/Setting';
-import { Image } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +33,7 @@ function TabNavigator (props) {
                         return(
                             <Image
                                 source={focused ? require('../img/home_select.png') : require('../img/home.png')}
-                                style={{width: 40, height: 40}}
+                                style={styles.img}
                             />
                         );
                     }
@@ -47,7 +47,7 @@ function TabNavigator (props) {
                         return(
                             <Image
                                 source={focused ? require('../img/setting_select.png') : require('../img/setting.png')}
-                                style={{width: 40, height: 40}}
+                                style={styles.img}
                             />
                         );
                     }
@@ -55,6 +55,13 @@ function TabNavigator (props) {
             />
         </Tab.Navigator>   
     )
+}
+
+const styles = {
+    img: {
+        width: 40,
+        height: 40
+    }
 }
 
 export default TabNavigator;

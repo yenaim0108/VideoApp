@@ -50,8 +50,8 @@ function Login(props) {
                 password: password
               })
             })
-              .then((response) => response.json())
-              .then((json) => {
+              .then(response => response.json())
+              .then(json => {
                 if (json.idCheck === false) {
                   alert("존재하지 않는 아이디입니다.\n회원가입을 진행해 주세요.");
                 }

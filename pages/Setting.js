@@ -10,8 +10,8 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 
 function Setting(props) {
-  return (
-    <>
+     return (
+      <>
       <SafeAreaView style={styles.container}>
         <Text style={styles.title}>설정</Text>
         <TouchableOpacity style={styles.btn} onPress={() => {

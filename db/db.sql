@@ -25,31 +25,33 @@ CREATE TABLE IF NOT EXISTS `member` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 snap.member:~0 rows (대략적) 내보내기
+-- 테이블 데이터 snap.member:~3 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
 INSERT INTO `member` (`id`, `password`, `token`) VALUES
+	('snap', '0201', '-'),
+	('snap01', '0201', '-'),
 	('yenaim0108', '0108', '-');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 
 -- 테이블 snap.video_list 구조 내보내기
 CREATE TABLE IF NOT EXISTS `video_list` (
   `idx` bigint(50) unsigned NOT NULL AUTO_INCREMENT,
-  `path` text NOT NULL,
+  `link` text NOT NULL,
   `thumbnail` text DEFAULT NULL,
   `title` text NOT NULL,
   `views` int(11) NOT NULL DEFAULT 0,
-  `upload` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `upload` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idx`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- 테이블 데이터 snap.video_list:~5 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `video_list` DISABLE KEYS */;
-INSERT INTO `video_list` (`idx`, `path`, `thumbnail`, `title`, `views`, `upload`) VALUES
-	(1, 'https://youtu.be/8BDZkywT5XI', 'http://i.ytimg.com/vi/8BDZkywT5XI/hqdefault.jpg', '바쁜 일상 화이팅하면서도 현타오는 부분 얘기하는 광고회사 직장인 브이로그', 10456, '2021-02-09 00:00:00'),
-	(2, 'https://youtu.be/iQR6TfepUzQ', 'http://i.ytimg.com/vi/iQR6TfepUzQ/hqdefault.jpg', '일할때 듣기좋은 발라드 추천', 2166429, '2020-11-14 00:00:00'),
-	(3, 'https://youtu.be/JtFI8dtPvxI', 'http://i.ytimg.com/JtFI8dtPvxI/hqdefault.jpg', '[최초 공개] 아이유(IU) \'Celebrity\' 라이브', 5107037, '2021-01-29 00:00:00'),
-	(4, 'https://youtu.be/L023K4fy6j4', 'http://i.ytimg.com/vi/L023K4fy6j4/hqdefault.jpg', '♨핫클립♨ \' 이승윤 \'소우주(Mikrokosmos)\'', 2363155, '2021-02-05 00:00:00'),
-	(5, 'https://youtu.be/TZSxoQl5L7w', 'http://i.ytimg.com/vi/TZSxoQl5L7w/hqdefault.jpg', 'B3] 농업 활성화를 위한 스마트팜 \'핸디팜(Handy Farm)\'', 192, '2021-02-04 00:00:00');
+INSERT INTO `video_list` (`idx`, `link`, `thumbnail`, `title`, `views`, `upload`) VALUES
+	(1, 'https://youtu.be/Xco5vbBmF5c', 'https://img.youtube.com/vi/Xco5vbBmF5c/maxresdefault.jpg', '[IU] Rain-Drop & Heart(마음) Concert Live Clip (@2017 Tour ‘Palette’)', 4090468, '2017-12-30 00:00:00'),
+	(2, 'https://youtu.be/o_nxIQTM_B0', 'https://img.youtube.com/vi/o_nxIQTM_B0/maxresdefault.jpg', '[IU] Blueming Live Clip (2019 IU Tour Concert \'Love, poem\')', 31823863, '2021-12-25 00:00:00'),
+	(3, 'https://youtu.be/JtFI8dtPvxI', 'https://img.youtube.com/vi/JtFI8dtPvxI/maxresdefault.jpg', '[최초 공개] 아이유(IU) \'Celebrity\' 라이브', 5107037, '2021-01-29 00:00:00'),
+	(4, 'https://youtu.be/tJM0yIbg8iQ', 'https://img.youtube.com/vi/tJM0yIbg8iQ/hqdefault.jpg', '[IU] \'eight\' Acoustic Ver. Live Clip', 35692391, '2020-05-16 00:00:00'),
+	(5, 'https://youtu.be/TZSxoQl5L7w', 'https://img.youtube.com/vi/TZSxoQl5L7w/maxresdefault.jpg', '[B3] 농업 활성화를 위한 스마트팜 \'핸디팜(Handy Farm)\'', 195, '2021-02-04 00:00:00');
 /*!40000 ALTER TABLE `video_list` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
